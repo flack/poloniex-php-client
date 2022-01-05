@@ -148,7 +148,7 @@ class PPC
      *
      * @return \AndreasGlaser\PPC\Result
      */
-    public function getPublicTradeHistory(string $currencyPair = 'ALL', int $start, int $end): Result
+    public function getPublicTradeHistory(string $currencyPair, int $start, int $end): Result
     {
         return $this->sendPublicRequest([
                 'command'      => 'returnTradeHistory',
@@ -167,7 +167,7 @@ class PPC
      *
      * @return \AndreasGlaser\PPC\Result
      */
-    public function getChartData(string $currencyPair = 'ALL', int $start, int $end, int $period): Result
+    public function getChartData(string $currencyPair, int $start, int $end, int $period): Result
     {
         if (!in_array($period, self::CANDLE_STICK_PERIODS)) {
             throw new \LogicException(sprintf('Candle stick period "%s" is invalid. Valid are "%s', $period, implode(', ', self::CANDLE_STICK_PERIODS)));

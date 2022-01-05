@@ -18,12 +18,12 @@
     }
   ],
   "require": {
-    "php": "^7",
+    "php": ">=7",
     "guzzlehttp/guzzle": ">6.0",
     "andreas-glaser/php-helpers": "^1.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5",
+    "phpunit/phpunit": "^8",
     "symfony/var-dumper": "@stable"
   },
   "suggest": {},

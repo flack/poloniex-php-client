@@ -3,20 +3,21 @@
 namespace AndreasGlaser\PPC\Tests;
 
 use AndreasGlaser\PPC\PPC;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class PPCTest
  *
  * @package AndreasGlaser\PPC\Tests
  */
-class PPCTest extends \PHPUnit_Framework_TestCase
+class PPCTest extends TestCase
 {
     /**
      * @var PPC
      */
     protected $ppc;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
         $this->ppc = new PPC();
@@ -88,20 +89,16 @@ class PPCTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($result->decoded));
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trading request are not possible if api key and secret have not been set
-     */
     public function testTradingException()
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Trading request are not possible if api key and secret have not been set');
         (new PPC())->getBalances();
     }
 
-    /**
-     * @expectedException \GuzzleHttp\Exception\ClientException
-     */
     public function testTradingExceptionWithApiKey()
     {
+        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
         (new PPC('dummy', 'dummy'))->getBalances();
     }
 }
